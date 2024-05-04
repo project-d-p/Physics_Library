@@ -1,7 +1,0 @@
-﻿  movementTest.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\yvals_core.h(896,1): error C2338: static_assert failed: 'error STL1001: Unexpected compiler version, expected MSVC 19.38 or newer.'
-C:\Users\Hansangmin\PhysX\physx\include\foundation/PxPreprocessor.h(450,1): fatal  error C1189: #error:  Exactly one of NDEBUG and _DEBUG needs to be defined!
-  Movement.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\yvals_core.h(896,1): error C2338: static_assert failed: 'error STL1001: Unexpected compiler version, expected MSVC 19.38 or newer.'
-C:\Users\Hansangmin\PhysX\physx\include\foundation/PxPreprocessor.h(450,1): fatal  error C1189: #error:  Exactly one of NDEBUG and _DEBUG needs to be defined!
-  Generating Code...

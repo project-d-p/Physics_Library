@@ -1,7 +1,6 @@
 ﻿#ifndef MOVEMENT_H
 #define MOVEMENT_H
 
-#include <memory>
 #include <PxPhysicsAPI.h>
 
 typedef struct {
@@ -14,15 +13,18 @@ namespace Movement {
 class Movement {
 public:
     Movement();
+    // ~Movement();
 
     t_movement updatePosition();
 private:
-    std::shared_ptr<physx::PxScene> scene;
-    std::shared_ptr<physx::PxPhysics> physics;
-    std::shared_ptr<physx::PxController> character;
-    std::shared_ptr<physx::PxControllerManager> manager;
+    physx::PxScene* scene;
+    physx::PxPhysics* physics;
+    physx::PxFoundation* foundation;
+    physx::PxController* character;
+    physx::PxControllerManager* manager;
 
-    void initializeController();
+    void initController();
+    void initScene();
 };
 
 }
