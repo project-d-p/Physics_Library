@@ -34,10 +34,12 @@ void initPhysics() {
 int main(void) {
 	initPhysics();
 
-	common::ObjectInfo objectInfo{PxVec3(0, 5, 0), PxVec3(1, 1, 1), PxVec3(0, 0, 0), {0.5, 0.5, 0.5}, 1.0, "test"};
+	common::ObjectInfo objectInfo{PxVec3(0, 5, 0), PxVec3(1, 1, 1), PxVec3(0, 10, 0), {0.5, 0.5, 0.5}, 1.0, "test"};
 	PxRigidDynamic* dynamic = common::ObjectTools::CreateDynamicObject(objectInfo, gPhysics);
 	gScene->addActor(*dynamic);
 	gun::SourceInfo sourceInfo{PxVec3(0, 15, 0), PxVec3(0, -1, 0), 100};
 	gun::TargetInfo targetInfo = gun::HitscanShootProcess::OnShoot(sourceInfo, gScene, PxQueryFilterData());
+	std::cout << targetInfo.distance_ << " " << targetInfo.id_ << std::endl;
+	targetInfo = gun::HitscanShootProcess::OnShoot(sourceInfo, gScene, PxQueryFilterData());
 	std::cout << targetInfo.distance_ << " " << targetInfo.id_ << std::endl;
 }

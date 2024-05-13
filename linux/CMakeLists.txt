@@ -11,16 +11,20 @@ add_compile_definitions(NDEBUG)
 link_directories("/home/deulee/src/PhysX/physx/bin/linux.clang/${PHYSX_BUILD_TYPE}") # This is the path where PhysX libraries are installed
 
 set(SRC_FILES
+	"${CMAKE_CURRENT_SOURCE_DIR}/../source/filter/projectile_gun_filter.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/../source/gun/projectile_shoot_process.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/gun/hitscan_shoot_process.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/common/objects.cpp"
-)
-
-set(HEADER_FILES
+	)
+	
+	set(HEADER_FILES
+	"${CMAKE_CURRENT_SOURCE_DIR}/../source/gun/projectile_shoot_process.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/gun/hitscan_shoot_process.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/gun/source_info.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/gun/target_info.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/common/objects.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/../source/common/object_info.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/../source/filter/projectile_gun_filter.h"
 )
 
 set(HEADER_DIRS
