@@ -1,4 +1,5 @@
 #include "objects.h"
+#include <iostream>
 
 namespace common {
 
