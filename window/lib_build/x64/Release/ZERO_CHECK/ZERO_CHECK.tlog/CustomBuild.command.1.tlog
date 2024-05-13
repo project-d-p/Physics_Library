@@ -1,0 +1,10 @@
+^C:\USERS\HANSANGMIN\PROJ_A\PHYSICS_LIBRARY\WINDOW\LIB_BUILD\CMAKEFILES\6C6E1388BE44F95B236122EF1A7CB961\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Hansangmin/Proj_a/Physics_Library/window -BC:/Users/Hansangmin/Proj_a/Physics_Library/window/lib_build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Hansangmin/Proj_a/Physics_Library/window/lib_build/PhysX_Library.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

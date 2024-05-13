@@ -1,53 +1,76 @@
 ﻿#include "Movement.h"
 
-namespace Movement {
+namespace movement {
+
+// 이후에 구조체로 변경
+float jumpVelocity = 10.0f;
+float verticalVelocity;
+float moveSpeed = 0.1f;
 
 Movement::Movement()
 {
-    physx::PxDefaultErrorCallback errorCallback;
-    physx::PxDefaultAllocator allocator;
-    
-    foundation = PxCreateFoundation(PX_PHYSICS_VERSION, allocator, errorCallback);
-    // if (foundation) 에러 처리
-    physics = PxCreatePhysics(PX_PHYSICS_VERSION, *foundation, physx::PxTolerancesScale(), true);
-    // if (physics) 에러 처리
-    
-    initScene();
-    manager = PxCreateControllerManager(*scene, false);
-    initController();
+    // manager = PxCreateControllerManager(*gScene, false);
 }
 
-void Movement::initScene() {
-    physx::PxTolerancesScale scale;
-    scale.length = 1.0f;  // 길이 단위를 미터로 설정
-    scale.speed = 9.81f;  // 속도 단위를 m/s^2 (중력 가속도)로 설정
-    
-    physx::PxSceneDesc sceneDesc(scale);
-    // if (!sceneDesc.isValid()) 에러 처리
-    sceneDesc.gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);
-    scene = physics->createScene(sceneDesc);
-    // if (!scene) 에러 처리
+physx::PxControllerManager* Movement::initManager(physx::PxScene* scene)
+{
+    return PxCreateControllerManager(*scene, false);
 }
 
-void Movement::initController() {
+// 추후에 인자로 받아서 초기화가 진행될 수 있도록 변경, manager 또한 인자로 받아서.
+// 호출자가 객체를 관리할 수 있도록 진행.
+physx::PxController* Movement::initController(physx::PxPhysics* physics, physx::PxControllerManager* manager) {
     physx::PxCapsuleControllerDesc desc;
     desc.height = 1.7f;
     desc.radius = 0.5f;
-    desc.position = physx::PxExtendedVec3(0.0f, 0.0f, 0.0f);
+    // 디폴트 부분
+    desc.position = physx::PxVec3d(0.0f, 0.0f, 0.0f);
     desc.material = physics->createMaterial(0.5f, 0.5f, 0.1f);
-
+    desc.stepOffset = 0.3f;
+    
     if (!desc.isValid()) {
         // throw std::runtime_error("Controller description is not valid.");
     }
-    character = manager->createController(desc);
+    return manager->createController(desc);
 }
 
-t_movement Movement::updatePosition() {
-    physx::PxVec3 displacement(1, 0, 0);
-    physx::PxControllerFilters filters;
-    character->move(displacement, 0.001f, 1.0f / 60.0f, filters);
+void Movement::jump() {
+    if (isGrounded()) {
+        verticalVelocity = jumpVelocity;
+    }
+}
+
+// void Movement::move(physx::PxVec3 input) {
+//     horizontalInput += input;
+// }
+
+bool Movement::isGrounded() {
+    // const float rayLength = 0.1f;
+    // physx::PxVec3 rayStart = physx::PxVec3\
+    //     (static_cast<float>(character->getPosition().x), \
+    //     static_cast<float>(character->getPosition().y), \
+    //     static_cast<float>(character->getPosition().z));
+    // physx::PxVec3 rayDir = physx::PxVec3(0, -1, 0);
+
+    // physx::PxRaycastBuffer hit;
+    // return scene->raycast(rayStart, rayDir, rayLength, hit);
+    return true;
+}
+
+/*
+// XXX: horizontalInput represents whether there is movement other than jumping.
+// If there is movement, set the corresponding axis to 1.
+*/
+t_movement Movement::updatePosition(float deltaTime, physx::PxVec3 horizontalInput, physx::PxController* character) {
+    physx::PxVec3 displacement(horizontalInput * moveSpeed);
+    // displacement.y += verticalVelocity * deltaTime;
     
-    physx::PxExtendedVec3 position = character->getPosition();
+    // verticalVelocity += scene->getGravity().y * deltaTime;
+    
+    physx::PxControllerFilters filters;
+    character->move(displacement, 0.001f, deltaTime, filters);
+    
+    physx::PxVec3d position = character->getPosition();
     t_movement res;
     res.x = position.x;
     res.y = position.y;
@@ -55,4 +78,4 @@ t_movement Movement::updatePosition() {
     return res;
 }
 
-}
+} // namespace movement
