@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Hansangmin\Proj_a\Physics_Library\window\Test\build\CMakeFiles\d68109816de6354bc74287fed8d541c5\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F4509305-62DB-32CB-B82A-E71CC5CF7156}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+^C:\USERS\HANSANGMIN\PROJ_A\PHYSICS_LIBRARY\WINDOW\TEST\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Hansangmin/Proj_a/Physics_Library/window/Test -BC:/Users/Hansangmin/Proj_a/Physics_Library/window/Test/build --check-stamp-file C:/Users/Hansangmin/Proj_a/Physics_Library/window/Test/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
