@@ -5,9 +5,9 @@
 namespace gun {
 
 struct SourceInfo {
-	physx::PxVec3 position;
-	physx::PxVec3 direction;
-	float maxDistance;
+	physx::PxVec3 position_;
+	physx::PxVec3 direction_;
+	float max_distance_;
 };
 
 } // namespace gun

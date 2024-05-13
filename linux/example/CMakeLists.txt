@@ -22,12 +22,28 @@ add_library(PhysicsEngine STATIC IMPORTED)
 set_property(TARGET PhysicsEngine PROPERTY IMPORTED_LOCATION ${LIBRARY_PATH}/libPhysicsEngine.a)
 
 # 빌드 대상 설정
-add_executable(Snippet
-    main.cpp
+add_executable(hitscan
+    ./hitscan/main.cpp
 )
 
+add_executable(projectile
+    ./projectile/main.cpp
+)   
+
 # 빌드 대상에 라이브러리 링크
-target_link_libraries(Snippet
+target_link_libraries(hitscan
+	PhysicsEngine
+    PhysXExtensions_static_64
+    PhysX_static_64
+    PhysXPvdSDK_static_64
+    PhysXCommon_static_64
+    PhysXFoundation_static_64
+
+    pthread
+    dl
+)
+
+target_link_libraries(projectile
 	PhysicsEngine
     PhysXExtensions_static_64
     PhysX_static_64
